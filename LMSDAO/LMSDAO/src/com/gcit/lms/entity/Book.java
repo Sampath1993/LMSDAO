@@ -12,6 +12,21 @@ public class Book implements Serializable {
 	private Publisher publisher;
 	private List<Author> authors;
 	private List<Genre> genres;
+	private List<BookCopies> bookCopies;
+	
+	
+	/**
+	 * @return the bookCopies
+	 */
+	public List<BookCopies> getBookCopies() {
+		return bookCopies;
+	}
+	/**
+	 * @param bookCopies the bookCopies to set
+	 */
+	public void setBookCopies(List<BookCopies> bookCopies) {
+		this.bookCopies = bookCopies;
+	}
 	/**
 	 * @return the bookId
 	 */

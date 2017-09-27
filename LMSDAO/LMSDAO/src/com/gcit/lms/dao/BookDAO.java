@@ -48,7 +48,7 @@ public class BookDAO extends BaseDAO {
 	}
 
 	@Override
-	public List extractData(ResultSet rs) throws SQLException {
+	public List<Book> extractData(ResultSet rs) throws SQLException {
 		AuthorDAO adao = new AuthorDAO(conn);
 		List<Book> books = new ArrayList<>();
 		while (rs.next()) {
@@ -64,7 +64,7 @@ public class BookDAO extends BaseDAO {
 	}
 	
 	@Override
-	public List extractDataFirstLevel(ResultSet rs) throws SQLException {
+	public List<Book> extractDataFirstLevel(ResultSet rs) throws SQLException {
 		List<Book> books = new ArrayList<>();
 		while (rs.next()) {
 			Book b = new Book();
