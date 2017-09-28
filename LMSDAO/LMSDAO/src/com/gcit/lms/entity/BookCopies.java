@@ -15,7 +15,7 @@ public class BookCopies {
 	/**
 	 * @return the branchId
 	 */
-	public int getBranchId() {
+	public Integer getBranchId() {
 		return branchId;
 	}
 	/**
@@ -27,7 +27,7 @@ public class BookCopies {
 	/**
 	 * @return the bookId
 	 */
-	public int getBookId() {
+	public Integer getBookId() {
 		return bookId;
 	}
 	/**
@@ -39,7 +39,7 @@ public class BookCopies {
 	/**
 	 * @return the noOfCopies
 	 */
-	public int getNoOfCopies() {
+	public Integer getNoOfCopies() {
 		return noOfCopies;
 	}
 	/**

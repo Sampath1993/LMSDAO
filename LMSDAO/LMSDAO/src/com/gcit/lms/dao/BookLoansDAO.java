@@ -16,9 +16,8 @@ public class BookLoansDAO extends BaseDAO<BookLoans> {
 	}
 
 	public void saveBookLoan(BookLoans bookLoans) throws SQLException {
-		save("INSERT INTO tbl_book_loans (bookId, branchId, cardNo, dateOut, dueDate) VALUES (?,?,?,?,?)",
-				new Object[] { bookLoans.getBookId(), bookLoans.getBranchId(), bookLoans.getCardNo(),
-						bookLoans.getDateOut(), bookLoans.getDueDate()});
+		save("INSERT INTO tbl_book_loans (bookId, branchId, cardNo, dateOut, dueDate) VALUES (?,?,?,curdate(),date_add(curdate(), INTERVAL 1 WEEK))",
+				new Object[] { bookLoans.getBookId(), bookLoans.getBranchId(), bookLoans.getCardNo()});
 	}
 
 	public void saveBookLoanComplete(BookLoans bookLoans) throws SQLException {
@@ -67,10 +66,8 @@ public class BookLoansDAO extends BaseDAO<BookLoans> {
 			a.setDateOut(rs.getString("dateOut"));
 			a.setDueDate(rs.getString("dueDate"));
 			a.setDateIn(rs.getString("dateIn"));
-
 			bookLoans.add(a);
 		}
-
 		return bookLoans;
 	}
 
@@ -88,7 +85,6 @@ public class BookLoansDAO extends BaseDAO<BookLoans> {
 
 			bookLoans.add(a);
 		}
-
 		return bookLoans;
 	}
 }

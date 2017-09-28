@@ -21,7 +21,7 @@ public class BookCopiesDAO extends BaseDAO<BookCopies> {
 
 	public void updateBookCopies(BookCopies bookCopies) throws SQLException {
 		save("UPDATE tbl_book_copies SET noOfCopies = ? WHERE bookId = ? and branchID = ?",
-				new Object[] { bookCopies.getBookId(), bookCopies.getBranchId() });
+				new Object[] {bookCopies.getNoOfCopies(), bookCopies.getBookId(), bookCopies.getBranchId() });
 	}
 
 	public void deleteAuthor(BookCopies bookCopies) throws SQLException {
@@ -40,6 +40,16 @@ public class BookCopiesDAO extends BaseDAO<BookCopies> {
 
 	}
 	
+	public BookCopies showBookCopies(BookCopies bookCopies) throws SQLException {
+		List<BookCopies> books = readAll("SELECT * FROM tbl_book_copies WHERE branchId = ? AND bookId = ?", new Object[] { bookCopies.getBranchId(), bookCopies.getBookId() }) ;
+		
+		if(books != null)
+		{
+			return books.get(0);
+		}
+		return null;
+	}
+	
 	public List<BookCopies> readBranches(String bookName) throws SQLException {
 		if (bookName != null && !bookName.isEmpty()) {
 			bookName = "%" + bookName + "%";
@@ -51,7 +61,17 @@ public class BookCopiesDAO extends BaseDAO<BookCopies> {
 		}
 
 	}
+	
+	public void checkOutBookCopies(BookCopies bookCopies) throws SQLException {
+		save("UPDATE tbl_book_copies SET noOfCopies = noOfCopies-1 WHERE bookId = ? and branchID = ?",
+				new Object[] { bookCopies.getBookId(), bookCopies.getBranchId() });		
+	}
 
+	public void returnBookCopies(BookCopies bookCopies) throws SQLException {
+		save("UPDATE tbl_book_copies SET noOfCopies = noOfCopies+1 WHERE bookId = ? and branchID = ?",
+				new Object[] { bookCopies.getBookId(), bookCopies.getBranchId() });		
+	}
+	
 	@Override
 	public List<BookCopies> extractData(ResultSet rs) throws SQLException {
 		List<BookCopies> bookCopies = new ArrayList<>();
