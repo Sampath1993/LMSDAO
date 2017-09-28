@@ -21,9 +21,20 @@ public class BookLoansDAO extends BaseDAO<BookLoans> {
 						bookLoans.getDateOut(), bookLoans.getDueDate()});
 	}
 
-	public void updateBookLoanDueDate(BookLoans bookLoans) throws SQLException {
+	public void saveBookLoanComplete(BookLoans bookLoans) throws SQLException {
+		save("INSERT INTO tbl_book_loans (bookId, branchId, cardNo, dateOut, dueDate, dateIn) VALUES (?,?,?,?,?,?)",
+				new Object[] { bookLoans.getBookId(), bookLoans.getBranchId(), bookLoans.getCardNo(),
+						bookLoans.getDateOut(), bookLoans.getDueDate(), bookLoans.getDateIn()});
+	}
+	
+	public void overrideDueDate(BookLoans bookLoans) throws SQLException {
 		save("UPDATE tbl_book_loans SET dueDate = date_add(dueDate, INTERVAL 1 week) WHERE bookId = ? and branchId = ? and cardNo = ?",
 				new Object[] { bookLoans.getBookId(), bookLoans.getBranchId(), bookLoans.getCardNo() });
+	}
+	
+	public void updateBookLoanDueDate(BookLoans bookLoans) throws SQLException {
+		save("UPDATE tbl_book_loans SET dueDate = ? WHERE bookId = ? and branchId = ? and cardNo = ?",
+				new Object[] {bookLoans.getDueDate(), bookLoans.getBookId(), bookLoans.getBranchId(), bookLoans.getCardNo() });
 	}
 
 	public void updateBookLoanDateIn(BookLoans bookLoans) throws SQLException {

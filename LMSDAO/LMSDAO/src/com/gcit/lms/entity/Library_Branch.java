@@ -17,12 +17,12 @@ public class Library_Branch implements Serializable{
 	 */
 	private static final long serialVersionUID = 4187390478843232840L;
 	
-	private int branchId;
+	private Integer branchId;
 	private String branchName;
 	private String branchAddress;
 	private List<BookCopies> bookCopies;
 	
-	public int getBranchId() {
+	public Integer getBranchId() {
 		return branchId;
 	}
 	public void setBranchId(int branchId) {

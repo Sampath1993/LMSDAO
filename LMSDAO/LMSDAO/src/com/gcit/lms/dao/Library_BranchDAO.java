@@ -9,14 +9,14 @@ import java.util.List;
 import com.gcit.lms.entity.Library_Branch;
 import com.gcit.lms.entity.BookCopies;
 
-@SuppressWarnings({ "unchecked", "rawtypes" })
-public class Library_BranchDAO extends BaseDAO {
+@SuppressWarnings({ })
+public class Library_BranchDAO extends BaseDAO<Library_Branch> {
 
 	public Library_BranchDAO(Connection conn) {
 		super(conn);
 	}
 
-	public void saveLibrary_Branch(Library_Branch library_Branch) throws SQLException {
+	public void saveLibraryBranch(Library_Branch library_Branch) throws SQLException {
 		save("INSERT INTO tbl_library_branch (branchName,branchAddress) VALUES (?,?)",
 				new Object[] { library_Branch.getBranchName(), library_Branch.getBranchAddress() });
 	}
@@ -28,7 +28,7 @@ public class Library_BranchDAO extends BaseDAO {
 		}
 	}
 
-	public Integer saveLibrary_BranchWithID(Library_Branch library_Branch) throws SQLException {
+	public Integer saveLibraryBranchWithID(Library_Branch library_Branch) throws SQLException {
 		return saveWithID("INSERT INTO tbl_library_Branch (branchName, branchAddress) VALUES (?,?)",
 				new Object[] { library_Branch.getBranchName(), library_Branch.getBranchAddress() });
 	}
@@ -38,7 +38,7 @@ public class Library_BranchDAO extends BaseDAO {
 				new Object[] { library_Branch.getBranchName(), library_Branch.getBranchAddress(), library_Branch.getBranchId() });
 	}
 
-	public void deleteLibrary_Branch(Library_Branch library_Branch) throws SQLException {
+	public void deleteLibraryBranch(Library_Branch library_Branch) throws SQLException {
 		save("DELETE FROM tbl_library_Branch WHERE BranchId = ?", new Object[] { library_Branch.getBranchId() });
 	}
 

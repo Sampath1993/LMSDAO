@@ -9,8 +9,7 @@ import java.util.List;
 import com.gcit.lms.entity.Author;
 import com.gcit.lms.entity.Book;
 
-@SuppressWarnings({ "unchecked", "rawtypes" })
-public class BookDAO extends BaseDAO {
+public class BookDAO extends BaseDAO<Book> {
 
 	public BookDAO(Connection conn) {
 		super(conn);
